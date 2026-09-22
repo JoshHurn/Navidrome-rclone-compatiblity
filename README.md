@@ -63,7 +63,7 @@ Before pasting the Docker Compose stack into Portainer, download the `docker-com
 3. Navigate to **Stacks** in the left sidebar menu.
 4. Click **+ Add stack**.
 5. Give your stack a name (e.g., `navidrome-rclone`).
-6. Select **Web editor** and paste the contents of your updated docker-compose.yml
+6. Select **Web editor** and paste the contents of your updated `docker-compose.yml`
 7. Click **Deploy the stack**.
 
 ---
