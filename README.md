@@ -41,7 +41,7 @@ cp /path/to/your/rclone.conf /path/to/rclone/config/rclone.conf
 
 ## ⚙️ Step 2: Configure Placeholder Values
 
-Before pasting the Docker Compose stack into Portainer, update all generic placeholders inside `docker-compose.yml`:
+Before pasting the Docker Compose stack into Portainer, download the `docker-compose.yml` file and alter it based on your own file system and preferences:
 
 | Placeholder | Description | Example |
 | :--- | :--- | :--- |
@@ -63,7 +63,7 @@ Before pasting the Docker Compose stack into Portainer, update all generic place
 3. Navigate to **Stacks** in the left sidebar menu.
 4. Click **+ Add stack**.
 5. Give your stack a name (e.g., `navidrome-rclone`).
-6. Select **Web editor** and paste your customized `docker-compose.yml`.
+6. Select **Web editor** and paste the contents of your updated docker-compose.yml
 7. Click **Deploy the stack**.
 
 ---
