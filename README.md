@@ -4,6 +4,8 @@ This is a work in progress project so may not work as intended
 
 This guide explains how to set up **Navidrome** (music server) connected to a mainstream cloud storage providers (such as Google Drive, OneDrive, or Dropbox) by mounting it locally using **Rclone** via Docker Compose inside **Portainer**.
 
+The main point of this project is to allow for easy uploading of songs to navidrome without having to enter the host file system running these services via various means whether that be by using remote file sharing systems such as Samba, NFS etc. Also by making use of mainstream cloud providers it means that files can be uploaded remotely without the setup of a VPN or unnecessary port-forwarding with the added benefit of many of these providers allowing for a certain amount of free storage before having to pay for their subscription level packages.
+
 ## Links to Navidrome, Rclone and Portainer Repos:
  - https://github.com/navidrome/navidrome
  - https://github.com/rclone/rclone
