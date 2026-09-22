@@ -1,6 +1,6 @@
 # Navidrome + Rclone Cloud Mount Stack for Portainer
 
-## This is a work in progress project so may not work as intended
+This is a work in progress project so may not work as intended
 
 This guide explains how to set up **Navidrome** (music server) connected to a mainstream cloud storage providers (such as Google Drive, OneDrive, or Dropbox) by mounting it locally using **Rclone** via Docker Compose inside **Portainer**.
 
