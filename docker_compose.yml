@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  # Rclone service handles real-time cloud storage mounting
+  rclone:
+    image: rclone/rclone:latest
+    container_name: rclone-mount
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=<YOUR_TIMEZONE> # e.g., Europe/London, America/New_York
+    volumes:
+      # Host directory containing your rclone.conf file
+      - <PATH_TO_RCLONE_CONFIG_DIR>:/config/rclone
+      # Linked back to host directory with shared propagation for FUSE
+      - <PATH_TO_HOST_MOUNT_DIR>:/mnt/MusicDrive:shared
+    devices:
+      - /dev/fuse:/dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    command: "mount <RCLONE_REMOTE_NAME>:<REMOTE_FOLDER_PATH> /mnt/MusicDrive --config /config/rclone/rclone.conf --allow-other --allow-non-empty --dir-cache-time 1000h --read-only --vfs-cache-mode full --uid <YOUR_PUID> --gid <YOUR_PGID> --umask 022 -v"
+
+  # Navidrome service serves the music library
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+    user: "<YOUR_PUID>:<YOUR_PGID>"
+    ports:
+      - "4533:4533"
+    environment:
+      - ND_MUSICFOLDER=/music
+      - ND_DATAFOLDER=/data
+      - ND_LOGLEVEL=info
+      - ND_SCANSCHEDULE=@every 1h
+    volumes:
+      # Persistent host path for Navidrome database, artwork cache, etc.
+      - <PATH_TO_NAVIDROME_DATA_DIR>:/data
+      # Mount point with rslave propagation to dynamically receive FUSE mounts
+      - <PATH_TO_HOST_MOUNT_DIR>:/music:ro,rslave
+    depends_on:
+      - rclone
